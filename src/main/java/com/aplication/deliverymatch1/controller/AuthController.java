@@ -8,11 +8,10 @@ import com.aplication.deliverymatch1.util.JwtUtil;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -21,18 +20,15 @@ import java.util.Map;
 @RequestMapping("/api")
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
     private final UserService userService;
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthController(AuthenticationManager authenticationManager,
-                          UserService userService,
+    public AuthController(UserService userService,
                           UserRepository userRepository,
                           JwtUtil jwtUtil,
                           PasswordEncoder passwordEncoder) {
-        this.authenticationManager = authenticationManager;
         this.userService = userService;
         this.userRepository = userRepository;
         this.jwtUtil = jwtUtil;
@@ -42,7 +38,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
         try {
-            userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+            // Ne pas encoder ici : laisse UserService s'en charger
             userService.saveUser(userDto);
             return ResponseEntity.ok("User registered successfully");
         } catch (RuntimeException e) {
@@ -60,7 +56,12 @@ public class AuthController {
         return userRepository.findByEmail(email)
                 .map(user -> {
                     System.out.println("Utilisateur trouvé: " + user.getEmail());
-                    if (passwordEncoder.matches(password, user.getPassword())) {
+                    System.out.println("Login attempt:");
+                    System.out.println("Raw password from client: " + password);
+                    System.out.println("Hashed password from DB: " + user.getPassword());
+                    boolean matched = passwordEncoder.matches(password, user.getPassword());
+                    System.out.println("Password match result: " + matched);
+                    if (matched) {
                         String token = jwtUtil.generateToken(user.getEmail());
                         return ResponseEntity.ok(Map.of(
                                 "token", token,
@@ -78,12 +79,12 @@ public class AuthController {
                 });
     }
 
-
     @PostMapping("/logout")
     public ResponseEntity<String> logout() {
         SecurityContextHolder.clearContext();
         return ResponseEntity.ok("Logged out successfully");
     }
+
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
@@ -118,7 +119,6 @@ public class AuthController {
             }
 
             if (userDto.getRole() != null) {
-                // Assure-toi de gérer correctement le rôle (majuscule ?)
                 user.setRole(userDto.getRole());
             }
 

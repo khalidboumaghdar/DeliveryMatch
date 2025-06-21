@@ -64,11 +64,11 @@ DeliveryMatch est une application web innovante qui met en relation des **conduc
 ## 🧩 Diagrammes UML
 
 - 📌 Cas d’Utilisation
-  ![image](https://github.com/user-attachments/assets/1c7b0eaf-47d2-4dfb-b85e-7f5831a8a3e9)
+  ![image](https://github.com/user-attachments/assets/415268dc-b259-446b-9b49-d6f1e98ae8fe)
 - 📌 Diagramme de Classe
-  ![image](https://github.com/user-attachments/assets/1c2e67ba-dbf4-4b29-96bf-29430530d2d1)
+![image](https://github.com/user-attachments/assets/4baf871b-cace-4101-bc2f-1d538ded9812)
 - 📌 Séquence (publication trajet, acceptation demande, etc.)
-  ![image](https://github.com/user-attachments/assets/dc274d2f-0aad-4e7b-89ac-953760ba0d39)
+![image](https://github.com/user-attachments/assets/5d32b62d-f1d5-41b8-be36-1344c3fa04f9)
 - 📌 Base de données (ERD)
 
 

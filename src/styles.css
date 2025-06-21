@@ -1,1 +1,198 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --success-color: #4cc9f0;
+  --light-bg: #f8f9fa;
+  --accent-color: #4895ef;
+  --dark-color: #2b2d42;
+}
+
+/* General Styles */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: var(--dark-color);
+  background-color: var(--light-bg);
+}
+
+/* Navbar Styles */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: var(--primary-color) !important;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+.nav-link:hover {
+  color: white !important;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: var(--light-bg);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  background-image: url('assets/images/hero-bg.svg');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+.hero-section h1 {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.hero-section .lead {
+  font-size: 1.25rem;
+  color: rgba(255,255,255,0.9);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Features Section */
+.features .card {
+  background: var(--light-bg);
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.features-illustration {
+  max-width: 300px;
+  margin: 2rem auto;
+  display: block;
+}
+
+.features .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.features .card-body {
+  padding: 2rem;
+}
+
+.features .fas {
+  color: var(--accent-color);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Cards */
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer {
+  background-color: var(--dark-color);
+}
+
+footer a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+  color: rgba(255,255,255,0.8) !important;
+}
+
+footer a:hover {
+  color: var(--accent-color) !important;
+}
+
+footer .fas {
+  width: 20px;
+  color: var(--accent-color);
+}
+
+/* Status Badges */
+.badge {
+  padding: 0.5em 1em;
+  border-radius: 15px;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color) !important;
+}
+
+.bg-success {
+  background-color: var(--success-color) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 4rem 0;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section .lead {
+    font-size: 1.1rem;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+  }
+}

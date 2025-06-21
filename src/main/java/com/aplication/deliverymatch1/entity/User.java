@@ -1,6 +1,7 @@
 package com.aplication.deliverymatch1.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +21,17 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    private boolean verified = false; // Pour badge "Vérifié"
+    private boolean active = true;    // Pour suspendre le compte
+
+    @OneToMany(mappedBy = "conducteur", cascade = CascadeType.ALL)
+    private List<Annonce> annonces; // Liés aux trajets du conducteur
+
+    @OneToMany(mappedBy = "expediteur", cascade = CascadeType.ALL)
+    private List<Demande> demandes; // Liés aux demandes de l'expéditeur
+
+    // ================== GETTERS & SETTERS =================== //
 
     public Long getId() {
         return id;
@@ -69,6 +81,35 @@ public class User {
         this.role = role;
     }
 
-    // getters et setters
-}
+    public boolean isVerified() {
+        return verified;
+    }
 
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public List<Annonce> getAnnonces() {
+        return annonces;
+    }
+
+    public void setAnnonces(List<Annonce> annonces) {
+        this.annonces = annonces;
+    }
+
+    public List<Demande> getDemandes() {
+        return demandes;
+    }
+
+    public void setDemandes(List<Demande> demandes) {
+        this.demandes = demandes;
+    }
+}
